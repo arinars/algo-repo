@@ -9,24 +9,37 @@ namespace Algo.Sort
     /// <summary>
     /// 버블 정렬 클래스
     /// </summary>
-    public class BubbleSorter :Sorter
+    public class BubbleSorter : Sorter
     {
         public BubbleSorter(int aArraySize) : base(aArraySize) { }
         public BubbleSorter(int[] aArray) : base(aArray) { }
 
-        public override void Insert(int aIdx, int aValue)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void Execute()
         {
-            throw new NotImplementedException();
+            bubbleSort(false);
         }
 
-        public override void Print()
+        private void bubbleSort(bool aNoChange)
         {
-            throw new NotImplementedException();
+            if (aNoChange)
+            {
+                return;
+            }
+            int temp;
+            aNoChange = true;
+            for (int i = 0; i < (mValues.Count() - 1); i++)
+            {
+                if (mValues[i] > mValues[i + 1])
+                {
+                    //Swap
+                    temp = mValues[i];
+                    mValues[i] = mValues[i + 1];
+                    mValues[i + 1] = temp;
+                    aNoChange = false;
+                }
+            }
+
+            bubbleSort(aNoChange);
         }
     }
 }
