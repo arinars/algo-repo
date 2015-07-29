@@ -11,29 +11,21 @@ namespace Algo.Sort
     /// </summary>
     public abstract class Sorter
     {
-        protected int[] mInputValues = null;
-        public int[] InputValues
+        protected int[] mValues = null;
+        public int[] Values
         {
-            get { return mInputValues; }
-            set { mInputValues = value; }
-        }
-
-        protected int[] mResultValues = null;
-        public int[] ResultValues
-        {
-            get { return mResultValues; }
+            get { return mValues; }
+            set { mValues = value; }
         }
 
         public Sorter(int aArraySize)
         {
-            mInputValues = new int[aArraySize];
-            mResultValues = new int[aArraySize];
+            mValues = new int[aArraySize];
         }
 
         public Sorter(int[] aArray)
         {
-            mInputValues = aArray;
-            mResultValues = aArray.ToArray();
+            mValues = aArray;
         }
 
         /// <summary>
@@ -41,7 +33,10 @@ namespace Algo.Sort
         /// </summary>
         /// <param name="aIdx"></param>
         /// <param name="aValue"></param>
-        abstract public void Insert(int aIdx, int aValue);
+        public void Insert(int aIdx, int aValue)
+        {
+            mValues[aIdx] = aValue;
+        }
 
         /// <summary>
         /// 정렬 실행 메소드
@@ -50,6 +45,9 @@ namespace Algo.Sort
         /// <summary>
         /// 결과 프린트
         /// </summary>
-        abstract public void Print();
+        public void Print()
+        {
+            Console.WriteLine(string.Join(" ", mValues));
+        }
     }
 }

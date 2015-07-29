@@ -44,10 +44,8 @@ namespace Algo
                                           .Select(x => Convert.ToInt32(x))
                                           .ToArray();
 
-                        Sorter lSorter = new QuickSorter(lCnt_TestCase);
+                        Sorter lSorter = new BubbleSorter(lParams);
 
-                        //입력값 세팅
-                        lSorter.InputValues = lParams;
                         //정렬 실행
                         lSorter.Execute();
                         //프린트

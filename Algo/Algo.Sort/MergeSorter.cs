@@ -14,19 +14,10 @@ namespace Algo.Sort
         public MergeSorter(int aArraySize) : base(aArraySize) { }
         public MergeSorter(int[] aArray) : base(aArray) { }
 
-        public override void Insert(int aIdx, int aValue)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void Execute()
         {
             throw new NotImplementedException();
         }
 
-        public override void Print()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
