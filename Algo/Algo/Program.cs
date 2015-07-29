@@ -44,7 +44,7 @@ namespace Algo
                                           .Select(x => Convert.ToInt32(x))
                                           .ToArray();
 
-                        Sorter lSorter = new BubbleSorter(lParams);
+                        Sorter lSorter = new Q1071Sorter(lParams);
 
                         //정렬 실행
                         lSorter.Execute();
