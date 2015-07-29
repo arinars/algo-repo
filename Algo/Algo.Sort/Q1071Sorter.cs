@@ -22,6 +22,7 @@ namespace Algo.Sort
 
         private void bubbleSort(bool aNoChange)
         {
+            // 수정된 것이 없으면서, 1번 배열의 값이 가장 작은 경우 종료.
             if (aNoChange)
             {
                 return;
@@ -42,7 +43,7 @@ namespace Algo.Sort
                     }
                 }
 
-                if(!aNoChange)
+                if(dic.Count() > 0)
                 {
                     // 현재 위치의 수와 사전에 있는 가장 작은 수과 Swap
                     var temp = dic.OrderBy(x => x.Value).First();
