@@ -17,46 +17,76 @@ namespace Algo.Sort
 
         public override void Execute()
         {
-            bubbleSort(false);
+            //가장 작은 수를 구해서 정렬 시작.
+            int min = mValues.Min();
+            for (int i = 0; i < mValues.Count(); i++)
+            {
+                if (mValues[i] == min)
+                {
+                    //스왑 대상자.
+                    mValues[i] = mValues[0];
+                    mValues[0] = min;
+                    break;
+                }
+            }
+            
+            sort(0);
         }
 
-        private void bubbleSort(bool aNoChange)
+        private void sort(int aIdx)
         {
-            // 수정된 것이 없으면서, 1번 배열의 값이 가장 작은 경우 종료.
-            if (aNoChange)
+            if (aIdx >= mValues.Count() - 1)
             {
                 return;
             }
-            //int temp;
-            aNoChange = true;
 
-            Dictionary<int, int> dic = new Dictionary<int, int>();
-            for (int i = 0; i < (mValues.Count() - 1); i++)
+            int temp;
+            Dictionary<int, int> lDic = new Dictionary<int, int>();
+            
+            for (int i = aIdx; i < (mValues.Count() - 1); i++)
             {
-                for (int j = i + 1; j < (mValues.Count() - 1); j++)
+                // A[i] + 1 != A[i+1] 인 값을 사전에 넣는다.
+                // 다음에 올수 있는 값을 구해서 사전에 넣는다.
+                if ((mValues[aIdx] + 1) != mValues[i + 1])
                 {
-                    if (((mValues[i] + 1) == mValues[j]))
-                    {
-                        // A[i] + 1 != A[i+1] 인 값을 사전에 넣는다.
-                        dic.Add(j, mValues[j]);
-                        aNoChange = false;
-                    }
-                }
-
-                if(dic.Count() > 0)
-                {
-                    // 현재 위치의 수와 사전에 있는 가장 작은 수과 Swap
-                    var temp = dic.OrderBy(x => x.Value).First();
-                    mValues[temp.Key] = mValues[i];
-                    mValues[i] = temp.Value;
-                    dic.Clear();
+                    //스왑 대상자.
+                    lDic.Add(i + 1, mValues[i + 1]);
                 }
             }
 
+            // 다음에 올수 있는 값들이 있는 경우
+            if (lDic.Count > 0)
+            {
+                //다음에 올수 있는 값 중에서 가장 작은 값을 구한다.
+                KeyValuePair<int, int> lMinValue = lDic.OrderBy(x => x.Value).First();
+                //다음에 오는 값을 조건에 맞는 값중 가장 작은 값으로 교체한다.
+                temp = mValues[aIdx + 1];
+                mValues[aIdx + 1] = mValues[lMinValue.Key];
+                mValues[lMinValue.Key] = temp;
 
+                //포인터값을 증가 시켜서 재귀.
+                sort(aIdx + 1);
+            }
+            else
+            {
+                // 다음에 올수 있는 값이 없는 경우
+                //이전값과 비교하면서 조건(A[i] + 1 != A[i+1]) 이 맞을때까지 이동 시킨다.
+                for (int i = aIdx; i >= 0; i--)
+                {
+                    //이전 값 과 스왑후
+                    temp = mValues[i + 1];
+                    mValues[i + 1] = mValues[i];
+                    mValues[i] = temp;
 
-            bubbleSort(aNoChange);
+                    //값 비교
+                    if (i == 0 || mValues[i - 1] + 1 != mValues[i])
+                    {
+                        sort(i);
+                        break; //소트 재개
+                    }
+                }
+            }
+            
         }
-
     }
 }
