@@ -33,6 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Academy.Numerics, Version=2.0.550.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Academy.Numerics.2.0.550.0\lib\net45\Academy.Numerics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sinbadsoft.Lib.Collections, Version=0.3.2.0, Culture=neutral, PublicKeyToken=d38a8d184fcd057c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sinbadsoft.Lib.Collections.0.3.2.0\lib\net40\Sinbadsoft.Lib.Collections.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,11 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinaryFileBuffer.cs" />
+    <Compile Include="ExternalMergeSort.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
