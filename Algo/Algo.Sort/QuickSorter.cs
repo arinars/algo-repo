@@ -32,26 +32,30 @@ namespace Algo.Sort
             int pivot, l_hold, r_hold;
             l_hold = left;
             r_hold = right;
-            pivot = mValues[left];
+            pivot = mValues[left]; //LEFT 값을 피벗으로 선정.
 
-            while (left < right)
+            while (left < right) //left 와 right가 만나면 루프를 빠져나온다.
             {
+                //피벗보다 작은 right 값을 찾는다. (큰 경우 다음 인덱스로 이동)
                 while (mValues[right] >= pivot && left < right) right--; //right
 
+                //left와 right 가 같지 않으면
                 if (left != right)
                 {
                     //값 스왑
                     mValues[left] = mValues[right];
-                    left++;
+                    left++; //left 한칸 이동
                 }
 
+                //피벗보다 큰 left 값을 찾는다. (작은 경우 다음 인덱스로 이동)
                 while (mValues[left] <= pivot && left < right) left++; //left
 
+                //left와 right가 같지 않으면
                 if (left != right)
                 {
                     //값 스왑
                     mValues[right] = mValues[left];
-                    right--;
+                    right--; //right 한칸 이동
                 }
             }
 
